@@ -340,3 +340,14 @@ Controller
 Vista FXML
    ↓
 Usuario
+
+Pregunta extra. ¿Cuál es la diferencia técnica entre un tipo primitivo y una clase envolvente (Wrapper) en Java al manejar datos para el Modelo?
+
+Respuesta investigada:
+Un tipo primitivo en Java almacena directamente un valor simple, como int, double, long o boolean. Una clase Wrapper representa ese tipo primitivo como un objeto, por ejemplo Integer, Double, Long o Boolean. Las clases Wrapper pueden utilizar valores null y también proporcionan métodos adicionales.
+
+Explicación con mis palabras:
+Un tipo primitivo sirve para guardar un valor directamente, mientras que una clase Wrapper convierte ese tipo de dato en un objeto. Esto es útil cuando necesitamos trabajar con colecciones, valores nulos o funciones que requieren objetos.
+
+Ejemplo en LibraryApp:
+En Libro.java el atributo stock utiliza int porque siempre representa una cantidad numérica. Si fuera necesario permitir que el stock todavía no tuviera un valor asignado, se podría utilizar Integer, ya que Integer puede contener null.
