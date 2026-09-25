@@ -1,119 +1,222 @@
-# COMPONENTES.md
+# COMPONENTES SEMANA 2
+## Arquitectura DAO
 
-## Análisis de componentes - Semana 1
 
----
+# Conexion.java
 
-## 1. Autor.java
+## Paquete
 
-**Nombre de la clase:** Autor
+org.kt.util
 
-**Paquete:** `org.kt.model`
 
-**Capa arquitectónica:** Modelo (Model - MVC)
+## Descripción
 
-**Responsabilidad única:**  
-Representar la información de un autor dentro de LibraryApp. Almacena su identificador, nombre, apellido, nacionalidad y biografía.
+Clase encargada de crear y administrar la conexión entre la aplicación Java y la base de datos MySQL.
 
-**Dependencias directas:**  
-La clase no depende directamente de otras clases del modelo. Sus atributos utilizan tipos primitivos y objetos de tipo `String`. La relación entre un autor y un libro es manejada mediante `AutorLibro`.
 
-**Datos principales:**
+## Responsabilidad
 
-- `idAutor`: identificador del autor.
-- `nombreAutor`: nombre del autor.
-- `apellidoAutor`: apellido del autor.
-- `nacionalidad`: nacionalidad del autor.
-- `biografia`: información biográfica del autor.
+- Cargar los datos de conexión.
+- Crear conexiones JDBC.
+- Mantener una única instancia mediante Singleton.
 
-**Flujo del dato:**
 
-    Formulario / Base de datos
-              ↓
-           Autor
-              ↓
-    Controller / DAO
-              ↓
-            Vista
+## Tecnologías utilizadas
 
-El objeto `Autor` recibe o almacena la información de un autor. Posteriormente estos datos pueden ser utilizados por otras capas de la aplicación para mostrarlos o almacenarlos.
+- Java.
+- JDBC.
+- MySQL.
+
+
+## Funcionamiento
+
+Los DAO solicitan una conexión a esta clase para poder realizar operaciones en la base de datos.
+
+
 
 ---
 
-## 2. Categoria.java
+# LibroDAO.java
 
-**Nombre de la clase:** Categoria
+## Paquete
 
-**Paquete:** `org.kt.model`
+org.kt.dao
 
-**Capa arquitectónica:** Modelo (Model - MVC)
 
-**Responsabilidad única:**  
-Representar una categoría utilizada para clasificar los libros registrados en LibraryApp.
+## Descripción
 
-**Dependencias directas:**  
-No posee dependencias directas con otras clases. Utiliza un atributo de tipo `int` y otro de tipo `String`. La clase `Libro` utiliza `idCategoria` para identificar la categoría a la que pertenece.
+Interfaz encargada de definir las operaciones que se pueden realizar con los libros.
 
-**Datos principales:**
 
-- `idCategoria`: identificador de la categoría.
-- `nombreCategoria`: nombre de la categoría.
+## Responsabilidad
 
-**Flujo del dato:**
+Define los métodos CRUD para la entidad Libro.
 
-    Formulario / Base de datos
-              ↓
-          Categoria
-              ↓
-    Controller / DAO
-              ↓
-            Vista
-              ↓
-            Libro
 
-La categoría puede obtenerse desde la base de datos o desde información ingresada por el usuario y posteriormente utilizarse para clasificar un libro.
+## Métodos principales
+
+- crear()
+- actualizar()
+- eliminar()
+- buscarPorId()
+- listarTodos()
+
+
+## Dependencia
+
+Utiliza el modelo:
+
+Libro.java
+
+
+
+---
+
+# LibroDAOImpl.java
+
+## Paquete
+
+org.kt.dao.impl
+
+
+## Descripción
+
+Clase que implementa la interfaz LibroDAO.
+
+
+## Responsabilidad
+
+Ejecutar las operaciones de libros utilizando JDBC y procedimientos almacenados.
+
+
+## Tecnologías utilizadas
+
+- Connection.
+- CallableStatement.
+- ResultSet.
+
+
+## Funcionamiento
+
+Recibe una solicitud del DAO.
+
+↓
+
+Realiza la conexión mediante Conexion.java.
+
+↓
+
+Ejecuta un procedimiento almacenado.
+
+↓
+
+Devuelve los resultados.
+
+
 
 ---
 
-## 3. Libro.java
+# SesionContext.java
 
-**Nombre de la clase:** Libro
+## Paquete
 
-**Paquete:** `org.kt.model`
+org.kt.manager
 
-**Capa arquitectónica:** Modelo (Model - MVC)
 
-**Responsabilidad única:**  
-Representar un libro dentro de LibraryApp y almacenar sus datos principales para que puedan ser utilizados por las demás capas de la aplicación.
+## Descripción
 
-**Dependencias directas:**  
-La clase utiliza tipos como `String`, `double` e `int`. Además, mantiene referencias mediante identificadores hacia `Categoria` y `Editorial`.
+Clase encargada de administrar la sesión del usuario actual.
 
-- `idCategoria` relaciona el libro con una categoría.
-- `nitEditorial` relaciona el libro con una editorial.
 
-**Datos principales:**
+## Responsabilidad
 
-- `isbn`: código ISBN que identifica al libro.
-- `titulo`: título del libro.
-- `fechaPublicacion`: fecha de publicación.
-- `precio`: precio del libro.
-- `idCategoria`: identificador de su categoría.
-- `nitEditorial`: NIT de la editorial.
-- `stock`: cantidad disponible.
+- Guardar el usuario autenticado.
+- Obtener información de la sesión.
+- Cerrar sesión.
 
-**Flujo del dato:**
 
-    Categoria ─────┐
-                   │
-    Editorial ─────┤
-                   ↓
-                 Libro
-                   ↓
-           Controller / DAO
-                   ↓
-           Base de datos / Vista
+## Patrón utilizado
 
-El objeto `Libro` concentra la información principal de un libro. La categoría y la editorial se relacionan mediante sus identificadores y los datos del libro pueden posteriormente ser utilizados para mostrarlos o almacenarlos.
+Singleton.
+
+
+## Métodos principales
+
+- getInstancia()
+- getUsuarioActual()
+- setUsuarioActual()
+- cerrarSesion()
+
+
 
 ---
+
+# DaoException.java
+
+## Paquete
+
+org.kt.exception
+
+
+## Descripción
+
+Excepción utilizada para manejar errores relacionados con el acceso a datos.
+
+
+## Responsabilidad
+
+Controlar errores de conexión, consultas SQL o procedimientos almacenados.
+
+
+
+---
+
+# ValidacionException.java
+
+## Paquete
+
+org.kt.exception
+
+
+## Descripción
+
+Excepción utilizada para controlar errores en la validación de información ingresada por el usuario.
+
+
+## Responsabilidad
+
+Validar:
+
+- Campos vacíos.
+- Correos.
+- Números.
+- Fechas.
+- Longitudes de datos.
+
+
+
+---
+
+# Flujo general del sistema
+
+Controlador
+
+↓
+
+DAO
+
+↓
+
+DAOImpl
+
+↓
+
+Conexion
+
+↓
+
+MySQL
+
+↓
+
+Resultado
