@@ -30,7 +30,7 @@ import org.kt.util.Conexion;
  * @see VentaDAO
  * @see Venta
  */
-public class VentaDAOImpl implements VentaDAO {
+    public class VentaDAOImpl implements VentaDAO {
 
     private final DetalleVentaDAO detalleVentaDAO =
             new DetalleVentaDAOImpl();
