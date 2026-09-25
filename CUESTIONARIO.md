@@ -1,3 +1,112 @@
+# CUESTIONARIO SEMANA 1
+## Modelo y Programación Orientada a Objetos
+
+
+## 1. ¿Qué es una clase?
+
+Es una plantilla que define atributos y métodos de un objeto.
+
+
+## 2. ¿Qué es un objeto?
+
+Es una instancia creada a partir de una clase.
+
+
+## 3. ¿Qué son los atributos?
+
+Son las características o datos que tiene una clase.
+
+
+## 4. ¿Qué son los métodos?
+
+Son acciones que puede realizar un objeto.
+
+
+## 5. ¿Qué es encapsulamiento?
+
+Es proteger los datos internos de una clase mediante modificadores de acceso.
+
+
+## 6. ¿Para qué sirven los getters?
+
+Sirven para obtener información de los atributos.
+
+
+## 7. ¿Para qué sirven los setters?
+
+Sirven para modificar los valores de los atributos.
+
+
+## 8. ¿Qué es un constructor?
+
+Es un método utilizado para inicializar objetos.
+
+
+## 9. ¿Qué es POO?
+
+Es una forma de programación basada en objetos y clases.
+
+
+## 10. ¿Cuáles son los pilares de la POO?
+
+Son:
+
+- Encapsulamiento.
+- Herencia.
+- Polimorfismo.
+- Abstracción.
+
+
+## 11. ¿Qué es herencia?
+
+Es cuando una clase obtiene características de otra clase.
+
+
+## 12. ¿Qué es polimorfismo?
+
+Es la capacidad de tener diferentes comportamientos con el mismo método.
+
+
+## 13. ¿Qué es abstracción?
+
+Es mostrar solamente la información necesaria de un objeto.
+
+
+## 14. ¿Qué representa una clase modelo?
+
+Representa una entidad del sistema.
+
+
+## 15. ¿Por qué se utilizan modelos?
+
+Para organizar la información y representar los datos del sistema.
+
+
+## 16. ¿Qué lenguaje se utiliza para crear las clases del proyecto?
+
+Java.
+
+
+## 17. ¿Qué herramienta se utiliza para documentar clases Java?
+
+Javadoc.
+
+
+## 18. ¿Qué contiene normalmente una clase modelo?
+
+Atributos, constructores, getters y setters.
+
+
+## 19. ¿Qué significa private?
+
+Indica que un elemento solo puede ser utilizado dentro de la clase.
+
+
+## 20. ¿Qué significa public?
+
+Indica que un elemento puede ser utilizado desde otras clases.
+
+
 # CUESTIONARIO SEMANA 2
 ## DAO, JDBC y MySQL
 
