@@ -1,81 +1,174 @@
+# COMPONENTES SEMANA 1
+## Modelo del sistema
 
 
+# Libro.java
 
+## Paquete
 
+org.kt.model
 
 
+## Descripción
 
+Clase que representa la información de un libro dentro del sistema.
 
 
+## Responsabilidad
 
+Almacenar los datos relacionados con un libro.
 
 
+## Atributos principales
 
+- isbn.
+- titulo.
+- precio.
+- stock.
+- idCategoria.
+- nitEditorial.
 
 
+## Relación
 
+Se utiliza posteriormente con LibroDAO para almacenar información en la base de datos.
 
 
 
+---
 
+# Usuario.java
 
+## Paquete
 
+org.kt.model
 
 
+## Descripción
 
+Clase que representa un usuario del sistema.
 
 
+## Responsabilidad
 
+Guardar la información del usuario que utiliza la aplicación.
 
 
+## Atributos principales
 
+- id.
+- username.
+- email.
+- passwordHash.
+- rol.
 
 
+## Relación
 
+Se utiliza para autenticación y control de acceso.
 
 
 
+---
 
+# Cliente.java
 
+## Paquete
 
+org.kt.model
 
 
+## Descripción
 
+Clase que representa un cliente que realiza compras.
 
 
+## Responsabilidad
 
+Guardar información personal del cliente.
 
 
+## Atributos principales
 
+- cui.
+- nombreCliente.
+- apellidoCliente.
+- correoElectronico.
 
 
 
+---
 
+# Venta.java
 
+## Paquete
 
+org.kt.model
 
 
+## Descripción
 
+Clase que representa una venta realizada en el sistema.
 
 
+## Responsabilidad
 
+Almacenar la información de una transacción.
 
 
+## Atributos principales
 
+- noVenta.
+- fechaVenta.
+- totalVenta.
+- cuiCliente.
+- idUsuario.
 
 
 
+---
 
+# Categoria.java
 
+## Paquete
 
+org.kt.model
 
 
+## Descripción
 
+Clase que representa una categoría de libros.
 
 
+## Responsabilidad
 
+Clasificar los libros dentro del sistema.
 
 
+## Atributos principales
+
+- idCategoria.
+- nombreCategoria.
+
+
+
+---
+
+# Arquitectura del modelo
+
+El modelo representa los datos del sistema.
+
+Flujo:
+
+Modelo
+
+↓
+
+DAO
+
+↓
+
+Base de datos
 
 # COMPONENTES SEMANA 2
 ## Arquitectura DAO
