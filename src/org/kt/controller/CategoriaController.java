@@ -24,11 +24,13 @@ import org.kt.system.Principal;
 /**
  * Controlador de la interfaz gráfica de usuario para la gestión de categorías.
  * Administra la presentación, búsqueda, creación, edición y navegación de registros de {@link Categoria} en JavaFX.
+ * 
+ * Proyecto desarrollado con propósitos académicos y de aprendizaje estudiantil.
  *
- * @author Alvaro Calderón
+ * @author Kevin Tuy
  * @version 1.0
  * @see javafx.fxml.Initializable
- * @see org.ac.model.Categoria
+ * @see org.kt.model.Categoria
  */
 public class CategoriaController implements Initializable {
 
