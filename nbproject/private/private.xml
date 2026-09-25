@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/AutorLibroDAO.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/impl/FacturaDAOImpl.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/impl/UsuarioDAOImpl.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/VentaDAO.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/UsuarioDAO.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/impl/AutorLibroDAOImpl.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/FacturaDAO.java</file>
+            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/Crud.java</file>
+            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/Dao.java</file>
         </group>
     </open-files>
 </project-private>
