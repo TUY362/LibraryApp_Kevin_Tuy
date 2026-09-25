@@ -28,62 +28,63 @@ import org.kt.model.Editorial;
 import org.kt.model.Libro;
 import org.kt.system.Principal;
 
+/**
+ * Controlador para la interfaz de gestión de Libros.
+ * Esta clase maneja la lógica de la vista, la captura de datos del usuario, 
+ * las validaciones y la comunicación con la base de datos mediante el patrón DAO.
+ * 
+ * Proyecto desarrollado con propósitos académicos y de aprendizaje estudiantil.
+ * 
+ * @author Kevin Tuy
+ */
 public class LibroController implements Initializable {
 
-    @FXML
-    private TextField txtIsbn;
-    @FXML
-    private TextField txtTitulo;
-    @FXML
-    private TextField txtFecha;
-    @FXML
-    private TextField txtPrecio;
-    @FXML
-    private TextField txtStock;
-    @FXML
-    private ComboBox<Categoria> cmbCategoria;
-    @FXML
-    private ComboBox<Editorial> cmbEditorial;
-    @FXML
-    private Label lblMensaje;
-    @FXML
-    private TableView<Libro> tablaLibros;
-    @FXML
-    private TableColumn colIsbn;
-    @FXML
-    private TableColumn colTitulo;
-    @FXML
-    private TableColumn colFecha;
-    @FXML
-    private TableColumn colPrecio;
-    @FXML
-    private TableColumn colStock;
-    @FXML
-    private TableColumn colIdCategoria;
-    @FXML
-    private TableColumn colNitEditorial;
-    @FXML
-    private Button btnNuevo;
-    @FXML
-    private Button btnEditar;
-    @FXML
-    private Button btnPrimero;
-    @FXML
-    private Button btnAnterior;
-    @FXML
-    private Button btnSiguiente;
-    @FXML
-    private Button btnUltimo;
-    @FXML
-    private TextField txtBuscar;
+    // Componentes de la interfaz gráfica (FXML)
+    @FXML private TextField txtIsbn;
+    @FXML private TextField txtTitulo;
+    @FXML private TextField txtFecha;
+    @FXML private TextField txtPrecio;
+    @FXML private TextField txtStock;
+    @FXML private ComboBox<Categoria> cmbCategoria;
+    @FXML private ComboBox<Editorial> cmbEditorial;
+    @FXML private Label lblMensaje;
+    
+    // Tabla y columnas
+    @FXML private TableView<Libro> tablaLibros;
+    @FXML private TableColumn colIsbn;
+    @FXML private TableColumn colTitulo;
+    @FXML private TableColumn colFecha;
+    @FXML private TableColumn colPrecio;
+    @FXML private TableColumn colStock;
+    @FXML private TableColumn colIdCategoria;
+    @FXML private TableColumn colNitEditorial;
+    
+    // Botones y búsqueda
+    @FXML private Button btnNuevo;
+    @FXML private Button btnEditar;
+    @FXML private Button btnPrimero;
+    @FXML private Button btnAnterior;
+    @FXML private Button btnSiguiente;
+    @FXML private Button btnUltimo;
+    @FXML private TextField txtBuscar;
 
+    // Variables de control y acceso a datos
     private boolean modoEdicion = false;
     private final LibroDAO libroDAO = new LibroDAOImpl();
     private final CategoriaDAO categoriaDAO = new CategoriaDAOImpl();
     private final EditorialDAO editorialDAO = new EditorialDAOImpl();
+    
+    // Listas observables para el manejo de datos en la tabla
     private final ObservableList<Libro> listaLibros = FXCollections.observableArrayList();
     private final FilteredList<Libro> librosFiltrados = new FilteredList<>(listaLibros, p -> true);
 
+    /**
+     * Método que se ejecuta automáticamente al cargar la vista FXML.
+     * Inicializa los componentes de la ventana, carga los datos y configura los eventos.
+     * 
+     * @param location La ubicación utilizada para resolver rutas relativas.
+     * @param resources Los recursos utilizados para localizar el objeto raíz.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarTabla();
@@ -94,6 +95,10 @@ public class LibroController implements Initializable {
         configurarBusqueda();
     }
 
+    /**
+     * Configura las columnas de la tabla enlazando cada columna con su 
+     * respectivo atributo en el modelo Libro.
+     */
     public void configurarTabla() {
         colIsbn.setCellValueFactory(new PropertyValueFactory<Libro, String>("isbn"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<Libro, String>("titulo"));
@@ -104,6 +109,10 @@ public class LibroController implements Initializable {
         colNitEditorial.setCellValueFactory(new PropertyValueFactory<Libro, String>("nitEditorial"));
     }
 
+    /**
+     * Obtiene todos los registros de libros desde la base de datos y 
+     * los carga en la lista observable de la tabla.
+     */
     private void cargarTabla() {
         try {
             listaLibros.setAll(libroDAO.listarTodos());
@@ -112,6 +121,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Llena los ComboBox de Categoría y Editorial con los datos provenientes de la base de datos.
+     */
     private void cargarCombos() {
         try {
             cmbCategoria.setItems(FXCollections.observableArrayList(categoriaDAO.listarTodos()));
@@ -121,10 +133,18 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Configura el listener (escuchador) para el campo de texto de búsqueda, 
+     * permitiendo filtrar la tabla en tiempo real mientras el usuario escribe.
+     */
     private void configurarBusqueda() {
         txtBuscar.textProperty().addListener((obs, oldValue, newValue) -> filtrarLibros());
     }
 
+    /**
+     * Aplica el filtro de búsqueda a la lista de libros mostrados en la tabla.
+     * Compara el texto ingresado con los diferentes atributos del libro.
+     */
     private void filtrarLibros() {
         String busqueda = txtBuscar.getText().trim().toLowerCase();
         if (busqueda.isEmpty()) {
@@ -141,6 +161,10 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Agrega un listener a la tabla para detectar cuándo el usuario selecciona una fila.
+     * Al seleccionar un libro, sus datos se cargan automáticamente en el formulario.
+     */
     private void seleccionarFila() {
         tablaLibros.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSelection, newSelection) -> {
@@ -150,6 +174,8 @@ public class LibroController implements Initializable {
                         txtFecha.setText(newSelection.getFechaPublicacion());
                         txtPrecio.setText(String.valueOf(newSelection.getPrecio()));
                         txtStock.setText(String.valueOf(newSelection.getStock()));
+                        
+                        // Seleccionar el ítem correcto en el ComboBox de Categoría
                         cmbCategoria.setValue(null);
                         for (Categoria categoria : cmbCategoria.getItems()) {
                             if (categoria.getIdCategoria() == newSelection.getIdCategoria()) {
@@ -157,6 +183,8 @@ public class LibroController implements Initializable {
                                 break;
                             }
                         }
+                        
+                        // Seleccionar el ítem correcto en el ComboBox de Editorial
                         cmbEditorial.setValue(null);
                         for (Editorial editorial : cmbEditorial.getItems()) {
                             if (editorial.getNit().equals(newSelection.getNitEditorial())) {
@@ -169,9 +197,15 @@ public class LibroController implements Initializable {
                 });
     }
 
+    /**
+     * Maneja el evento del botón Guardar.
+     * Valida que todos los campos cumplan con los formatos y reglas de negocio, 
+     * luego crea un nuevo libro o actualiza uno existente.
+     */
     @FXML
     private void handleGuardar() {
         try {
+            // Validaciones de entrada de datos
             ValidacionException.validarNoVacio(txtIsbn.getText(), "ISBN");
             ValidacionException.validarNoVacio(txtTitulo.getText(), "título");
             ValidacionException.validarNoVacio(txtFecha.getText(), "fecha de publicación");
@@ -179,6 +213,7 @@ public class LibroController implements Initializable {
             ValidacionException.validarDecimal(txtPrecio.getText(), "precio");
             ValidacionException.validarNoVacio(txtStock.getText(), "stock");
             ValidacionException.validarNumero(txtStock.getText(), "stock");
+            
             if (Integer.parseInt(txtStock.getText().trim()) < 0) {
                 throw new ValidacionException("El campo stock no puede ser negativo.");
             }
@@ -189,6 +224,7 @@ public class LibroController implements Initializable {
             ValidacionException.validarNoNulo(cmbEditorial.getValue(),
                     "Seleccione una editorial.");
 
+            // Creación del objeto Libro con los datos del formulario
             Libro libro = new Libro(
                     txtIsbn.getText().trim(),
                     txtTitulo.getText().trim(),
@@ -199,12 +235,14 @@ public class LibroController implements Initializable {
                     Integer.parseInt(txtStock.getText().trim()));
 
             boolean guardado;
+            // Verifica si está agregando o actualizando
             if (modoEdicion) {
                 guardado = libroDAO.actualizar(libro);
             } else {
                 guardado = libroDAO.crear(libro);
             }
 
+            // Confirmación y reinicio de la interfaz
             if (guardado) {
                 lblMensaje.setText(modoEdicion
                         ? "Libro actualizado exitosamente."
@@ -225,6 +263,10 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Maneja el evento del botón Cancelar.
+     * Limpia los campos y restaura el estado original de la vista.
+     */
     @FXML
     private void handleCancelar() {
         limpiarFormulario();
@@ -234,6 +276,10 @@ public class LibroController implements Initializable {
         lblMensaje.setText("");
     }
 
+    /**
+     * Prepara el formulario para registrar un nuevo libro, habilitando los campos
+     * y deshabilitando la navegación en la tabla.
+     */
     @FXML
     private void handleNuevo() {
         modoEdicion = false;
@@ -245,6 +291,10 @@ public class LibroController implements Initializable {
         txtIsbn.requestFocus();
     }
 
+    /**
+     * Prepara el formulario para editar el libro que está actualmente seleccionado
+     * en la tabla.
+     */
     @FXML
     private void handleEditar() {
         Libro seleccion = tablaLibros.getSelectionModel().getSelectedItem();
@@ -258,6 +308,9 @@ public class LibroController implements Initializable {
         lblMensaje.setText("");
     }
 
+    /**
+     * Selecciona la primera fila de la tabla de libros.
+     */
     @FXML
     private void handlePrimero() {
         if (!tablaLibros.getItems().isEmpty()) {
@@ -266,6 +319,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Selecciona la fila anterior a la actual en la tabla de libros.
+     */
     @FXML
     private void handleAnterior() {
         if (!tablaLibros.getItems().isEmpty()) {
@@ -276,6 +332,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Selecciona la siguiente fila en la tabla de libros.
+     */
     @FXML
     private void handleSiguiente() {
         if (!tablaLibros.getItems().isEmpty()) {
@@ -286,6 +345,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Selecciona la última fila de la tabla de libros.
+     */
     @FXML
     private void handleUltimo() {
         if (!tablaLibros.getItems().isEmpty()) {
@@ -294,6 +356,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Regresa a la vista principal (Dashboard) dependiendo del rol del usuario.
+     */
     @FXML
     private void handleVolver() {
         try {
@@ -303,6 +368,9 @@ public class LibroController implements Initializable {
         }
     }
 
+    /**
+     * Limpia todo el texto y las selecciones de los campos del formulario.
+     */
     private void limpiarFormulario() {
         txtIsbn.clear();
         txtTitulo.clear();
@@ -313,6 +381,9 @@ public class LibroController implements Initializable {
         cmbEditorial.setValue(null);
     }
 
+    /**
+     * Habilita los campos del formulario para que el usuario pueda escribir.
+     */
     private void activarFormulario() {
         txtIsbn.setDisable(false);
         txtTitulo.setDisable(false);
@@ -323,6 +394,9 @@ public class LibroController implements Initializable {
         cmbEditorial.setDisable(false);
     }
 
+    /**
+     * Deshabilita los campos del formulario para que sean de solo lectura.
+     */
     private void desactivarFormulario() {
         txtIsbn.setDisable(true);
         txtTitulo.setDisable(true);
@@ -333,6 +407,9 @@ public class LibroController implements Initializable {
         cmbEditorial.setDisable(true);
     }
 
+    /**
+     * Activa la tabla y los botones de navegación.
+     */
     private void activarNavegacion() {
         tablaLibros.setDisable(false);
         btnNuevo.setDisable(false);
@@ -344,6 +421,10 @@ public class LibroController implements Initializable {
         txtBuscar.setDisable(false);
     }
 
+    /**
+     * Desactiva la tabla y los botones de navegación para evitar que el 
+     * usuario cambie de registro mientras edita o crea un libro.
+     */
     private void desactivarNavegacion() {
         tablaLibros.setDisable(true);
         btnNuevo.setDisable(true);
@@ -355,6 +436,11 @@ public class LibroController implements Initializable {
         txtBuscar.setDisable(true);
     }
 
+    /**
+     * Muestra un cuadro de diálogo de tipo Error.
+     * 
+     * @param mensaje El texto que describirá el error ocurrido.
+     */
     private void mostrarError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -363,6 +449,11 @@ public class LibroController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Muestra un cuadro de diálogo de tipo Advertencia (usado en validaciones).
+     * 
+     * @param mensaje El texto de recomendación o advertencia para el usuario.
+     */
     private void mostrarAdvertencia(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Advertencia");
@@ -370,5 +461,4 @@ public class LibroController implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
 }
