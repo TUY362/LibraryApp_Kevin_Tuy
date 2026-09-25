@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.kt.dao;
 
+import org.kt.model.Libro;
+
 /**
+ * Interfaz DAO encargada de definir las operaciones
+ * de acceso a datos para la entidad Libro.
  *
- * @author MANI
+ * Hereda las operaciones CRUD genéricas definidas
+ * en la interfaz Crud.
  */
-public class NewClass {
-    
+public interface LibroDAO extends Crud<Libro, String> {
+
 }
