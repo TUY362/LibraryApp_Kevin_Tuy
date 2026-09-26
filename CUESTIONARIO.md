@@ -243,3 +243,84 @@ Se utilizaron:
 - JDBC.
 - MySQL.
 - Procedimientos almacenados.
+
+
+
+
+# Cuestionario Semana 3
+## JavaFX, FXML y MVC
+
+
+### 1. ¿Qué es JavaFX?
+
+Es una tecnología de Java utilizada para desarrollar interfaces gráficas.
+
+
+### 2. ¿Para qué sirve un archivo FXML?
+
+Sirve para diseñar la interfaz gráfica separando el diseño del código Java.
+
+
+### 3. ¿Qué función tiene un Controller?
+
+Controlar los eventos de la interfaz y conectar la vista con la lógica del programa.
+
+
+### 4. ¿Qué significa MVC?
+
+Modelo, Vista y Controlador.
+
+
+### 5. ¿Cuál es la función del Modelo?
+
+Guardar y manejar los datos del sistema.
+
+
+### 6. ¿Cuál es la función de la Vista?
+
+Mostrar la interfaz con la que interactúa el usuario.
+
+
+### 7. ¿Cuál es la función del Controlador?
+
+Recibir acciones del usuario y comunicarse con el modelo.
+
+
+### 8. ¿Qué clase carga un archivo FXML?
+
+FXMLLoader.
+
+
+### 9. ¿Qué es una Scene en JavaFX?
+
+Es una pantalla que contiene los elementos visuales de la aplicación.
+
+
+### 10. ¿Qué es un Stage?
+
+Es la ventana principal donde se muestran las escenas.
+
+
+### 11. ¿Qué permite CSS en JavaFX?
+
+Permite modificar el diseño y apariencia de los componentes.
+
+
+### 12. ¿Por qué se separa FXML y Controller?
+
+Para tener un código más organizado y fácil de mantener.
+
+
+### 13. ¿Qué es un evento?
+
+Es una acción realizada por el usuario dentro de la aplicación.
+
+
+### 14. ¿Qué componente permite mostrar datos en filas y columnas?
+
+TableView.
+
+
+### 15. ¿Qué patrón ayuda a organizar una aplicación JavaFX?
+
+El patrón MVC.

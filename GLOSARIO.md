@@ -249,3 +249,86 @@ Es la capacidad de guardar información para que pueda mantenerse después de ce
 ## SesionContext
 
 Es una clase encargada de almacenar el usuario que tiene una sesión activa dentro del sistema.
+
+
+
+
+
+
+
+# Glosario Semana 3
+## Desarrollo de aplicaciones JavaFX con FXML y Controladores
+
+
+## JavaFX
+
+Framework de Java utilizado para crear interfaces gráficas de usuario modernas mediante ventanas, botones, tablas, formularios y otros componentes visuales.
+
+
+## FXML
+
+Lenguaje basado en XML utilizado por JavaFX para diseñar interfaces gráficas separando la vista del código Java.
+
+
+## Controller
+
+Clase Java encargada de controlar los eventos y acciones realizadas por el usuario en una vista FXML.
+
+
+## FXMLLoader
+
+Clase de JavaFX utilizada para cargar archivos FXML y crear la interfaz gráfica definida.
+
+
+## MVC
+
+Patrón de arquitectura que separa una aplicación en tres partes:
+
+- Modelo: representa los datos y la lógica.
+- Vista: representa la interfaz gráfica.
+- Controlador: comunica la vista con el modelo.
+
+
+## Modelo
+
+Clase que representa la información del sistema mediante atributos, métodos y objetos.
+
+
+## Vista
+
+Interfaz gráfica que permite al usuario interactuar con el sistema.
+
+
+## Evento
+
+Acción realizada por el usuario, como presionar un botón o escribir información.
+
+
+## Scene
+
+Contenedor que representa una pantalla dentro de una aplicación JavaFX.
+
+
+## Stage
+
+Ventana principal donde se muestran las escenas de JavaFX.
+
+
+## ObservableList
+
+Lista especial de JavaFX que permite actualizar automáticamente componentes como TableView.
+
+
+## TableView
+
+Componente visual utilizado para mostrar información en forma de tabla.
+
+
+## CSS JavaFX
+
+Archivo utilizado para definir estilos visuales de los componentes de una interfaz gráfica.
+
+
+## Navegación
+
+Proceso de cambiar entre diferentes vistas o escenas dentro de una aplicación.
