@@ -6,18 +6,7 @@
             <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/exception/ValidacionException.java</file>
             <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/Crud.java</file>
             <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/dao/Dao.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/AutorView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/CategoriaView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/AdminDashborad.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/InicioSesionView.fxml</file>
             <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/exception/DaoException.java</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/EditorialView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/DetalleVentaView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/InventarioView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/AutorLibroView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/CajeroView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/EmpleadoView.fxml</file>
-            <file>file:/C:/kevin/LibraryApp_Kevin_Tuy/src/org/kt/view/fxml/ClienteView.fxml</file>
         </group>
     </open-files>
 </project-private>
