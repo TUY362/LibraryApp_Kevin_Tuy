@@ -1,6 +1,7 @@
 package org.kt.system;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,9 +17,8 @@ import org.kt.model.Usuario;
 /**
  * Clase principal de la aplicación LibraryApp.
  *
- * Se encarga de iniciar la aplicación JavaFX,
- * administrar el escenario principal y realizar
- * la navegación entre escenas según el rol del usuario.
+ * Se encarga de iniciar JavaFX, administrar la ventana principal
+ * y controlar la navegación entre vistas según el rol del usuario.
  *
  * @author Kevin Tuy
  * @version 1.0
@@ -32,20 +32,40 @@ public class Principal extends Application {
 
 
     /**
-     * Cambia la escena actual utilizando un archivo FXML.
+     * Cambia la escena actual cargando un archivo FXML.
      *
-     * @param rutaFXML ruta del archivo FXML que se desea cargar
-     * @throws IOException si ocurre un error al cargar el archivo FXML
+     * @param rutaFXML ruta del archivo FXML
+     * @throws IOException si ocurre un error al cargar la vista
      */
     public static void cambiarEscena(String rutaFXML) throws IOException {
 
-        log.log(Level.INFO, "Se cambio de escena a: {0}", rutaFXML);
+        log.log(Level.INFO,
+                "Se cambio de escena a: {0}",
+                rutaFXML);
 
-        Parent raiz = FXMLLoader.load(
-                Principal.class.getResource(rutaFXML)
-        );
+
+        URL ubicacion = Principal.class.getResource(rutaFXML);
+
+
+        if (ubicacion == null) {
+
+            log.log(Level.SEVERE,
+                    "No se encontró el archivo FXML: {0}",
+                    rutaFXML);
+
+            throw new IOException(
+                    "No existe la vista FXML: " + rutaFXML
+            );
+        }
+
+
+        FXMLLoader loader = new FXMLLoader(ubicacion);
+
+        Parent raiz = loader.load();
+
 
         Scene escena = new Scene(raiz);
+
 
         escenarioPrincipal.setScene(escena);
         escenarioPrincipal.sizeToScene();
@@ -54,29 +74,36 @@ public class Principal extends Application {
     }
 
 
+
     /**
-     * Obtiene la ruta de la pantalla principal según
-     * el rol del usuario que tiene sesión activa.
+     * Obtiene la pantalla inicial según el rol.
      *
-     * @return ruta del archivo FXML correspondiente al rol
+     * @return ruta del FXML correspondiente
      */
     public static String rutaDashboardSegunRol() {
 
+
         Usuario usuario =
-                SesionContext.getInstancia().getUsuarioActual();
+                SesionContext.getInstancia()
+                .getUsuarioActual();
 
 
-        if (usuario == null || usuario.getRol() == null) {
+
+        if (usuario == null ||
+                usuario.getRol() == null) {
+
 
             return "/org/kt/view/fxml/InicioSesionView.fxml";
         }
 
 
+
         switch (usuario.getRol().toLowerCase()) {
+
 
             case "admin":
 
-                return "/org/kt/view/fxml/AdminDashboradView.fxml";
+                return "/org/kt/view/fxml/AdminDashborad.fxml";
 
 
             case "cajero":
@@ -101,10 +128,11 @@ public class Principal extends Application {
     }
 
 
+
     /**
-     * Método principal que inicia la aplicación.
+     * Inicio del programa.
      *
-     * @param args argumentos recibidos desde consola
+     * @param args argumentos
      */
     public static void main(String[] args) {
 
@@ -114,19 +142,25 @@ public class Principal extends Application {
     }
 
 
+
     /**
-     * Inicializa la ventana principal de JavaFX.
+     * Configuración inicial de JavaFX.
      *
      * @param escenarioPrincipal ventana principal
-     * @throws Exception si ocurre un error al cargar la vista inicial
+     * @throws Exception error al iniciar
      */
     @Override
-    public void start(Stage escenarioPrincipal) throws Exception {
+    public void start(Stage escenarioPrincipal)
+            throws Exception {
 
-        Principal.escenarioPrincipal = escenarioPrincipal;
+
+        Principal.escenarioPrincipal =
+                escenarioPrincipal;
 
 
-        escenarioPrincipal.setTitle("LibraryApp");
+        escenarioPrincipal.setTitle(
+                "LibraryApp"
+        );
 
 
         cambiarEscena(
@@ -134,7 +168,9 @@ public class Principal extends Application {
         );
 
 
-        log.info("JavaFX iniciado correctamente");
+        log.info(
+                "JavaFX iniciado correctamente"
+        );
     }
 
 }

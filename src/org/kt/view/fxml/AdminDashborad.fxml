@@ -16,8 +16,8 @@
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kt.controller.AdminDashboradController">
     <stylesheets>
-        <URL value="@/org/ac/view/style/base.css" />
-        <URL value="@/org/ac/view/style/admindashboradview.css" />
+        <URL value="@/org/kt/view/style/base.css" />
+        <URL value="@/org/kt/view/style/admindashborad.css" />
     </stylesheets>
 
     <top>
